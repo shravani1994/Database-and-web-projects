@@ -1,0 +1,4 @@
+
+This is a web project developed using HTML, CSS, PHP and MySQL database. 
+This helps user to enter the time spent on each of the individual hobby in the HTML form.
+It can retrieve the data using the back-end database of MySQL.
