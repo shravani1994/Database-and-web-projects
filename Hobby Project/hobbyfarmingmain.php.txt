@@ -1,0 +1,57 @@
+<html>
+<body>
+
+<?php
+$servername = "www.terratoast.rocks";
+$username = "sbommisetty";
+$password = "drink!QUIET!18";
+$dbname = "sbommisetty_db";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+      if(mysqli_connect_errno())
+      {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
+
+    $first_name = $_POST["fname"];
+    $last_name = $_POST["lname"];
+    $dob = $_POST["dob"];
+    $eating = $_POST["Eating"];
+    $sleeping = $_POST["Sleeping"];
+    $studying = $_POST["Studying"];
+    $gym = $_POST["Gym"];
+    $cooking = $_POST["Cooking"];
+    $gardening = $_POST["Gardening"];
+    $dancing = $_POST["Dancing"];
+    $singing = $_POST["Singing"];
+
+    mysqli_query($conn,"INSERT INTO Person(Fname,Lname,dob)
+    VALUES ('$first_name', '$last_name', '$dob')");
+
+    $PID = mysqli_insert_id($conn);
+
+    mysqli_query($conn,"INSERT INTO Person_Hobby(PID,HID,Time)
+    VALUES('$PID',(Select HID from Hobby where Name='Eating'),'$eating')");
+    mysqli_query($conn,"INSERT INTO Person_Hobby(PID,HID,Time)
+    VALUES('$PID',(Select HID from Hobby where Name='Sleeping'),'$sleeping')");
+    mysqli_query($conn,"INSERT INTO Person_Hobby(PID,HID,Time)
+ VALUES('$PID',(Select HID from Hobby where Name='Studying'),'$studying')");
+    mysqli_query($conn,"INSERT INTO Person_Hobby(PID,HID,Time)
+    VALUES('$PID',(Select HID from Hobby where Name='Gym'),'$gym')");
+    mysqli_query($conn,"INSERT INTO Person_Hobby(PID,HID,Time)
+    VALUES('$PID',(Select HID from Hobby where Name='Cooking'),'$cooking')");
+    mysqli_query($conn,"INSERT INTO Person_Hobby(PID,HID,Time)
+    VALUES('$PID',(Select HID from Hobby where Name='Gardening'),'$gardening')");
+    mysqli_query($conn,"INSERT INTO Person_Hobby(PID,HID,Time)
+    VALUES('$PID',(Select HID from Hobby where Name='Dancing'),'$dancing')");
+    mysqli_query($conn,"INSERT INTO Person_Hobby(PID,HID,Time)
+    VALUES('$PID',(Select HID from Hobby where Name='Singing'),'$singing')");
+
+   echo "Thanks for taking the survey !";
+
+    mysqli_close($conn);
+            ?>
+
+</body>
+</html>
