@@ -1,0 +1,4 @@
+Created a well-designed and detailed database that will store information necessary for the Jeopardy game show.
+Normalized the database and modified it with minimum or no redundancy.
+Generated various queries required for the implementation of the game and helps in finding the winner of the game using the given database.
+
