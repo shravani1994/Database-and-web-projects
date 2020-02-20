@@ -1,0 +1,46 @@
+1)SELECT Question,Answer
+from Question Q
+Join Category C
+ON Q.CategoryNO = C.CategoryNO
+where C.CategoryName like '%history%';
+
+2)SELECT S.ShowDate,SUM(Q.POINTS) As Score
+from Shows S
+join Records R
+ON S.ShowNO = R.ShowNO
+JOIN Player P
+ON P.PlayerID = R.PlayerID
+Join Question Q
+ON R.QuestionNo = Q.QuestionNO
+where P.LastName like 'Smith'
+group by S.ShowNO,P.PlayerID
+
+3)SELECT (P.FirstName || " " ||P.LastName) AS 'Full Name',SUM(Q.Points) As Score
+from Shows S
+join Records R
+ON S.ShowNO = R.ShowNO
+JOIN Player P
+ON P.PlayerID = R.PlayerID
+Join Question Q
+ON R.QuestionNo = Q.QuestionNO
+group by P.PlayerID
+
+4)select FullName,Max(score),sdate 
+FROM
+(select (P.FirstName || " " ||P.LastName) AS 'FullName',P.PlayerID as pid, SUM(Q.Points) as score,S.ShowDate as sdate
+from Shows S
+join Records R
+ON S.ShowNO = R.ShowNO
+JOIN Player P
+ON P.PlayerID = R.PlayerID
+Join Question Q
+ON R.QuestionNo = Q.QuestionNO
+group by P.PlayerID,S.ShowNO)
+
+5)select C.CategoryName, Count(Q.QuestionNO) As total_count
+from Category C
+JOIN Question Q
+ON C.CategoryNo = Q.CategoryNo
+group by C.CategoryNO
+ORDER BY total_count desc
+LIMIT 5
